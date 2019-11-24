@@ -1,4 +1,4 @@
-package com.example.user.musicplayer.fragment;
+package com.example.user.musicplayer;
 
 
 import android.Manifest;
@@ -101,8 +101,8 @@ public class LocalFragment extends Fragment {
             }
         });
 
-        adapter = new MusicAdapter(getActivity(), musicList);                //创建MusicAdapter的对象，实现自定义适配器的创建
-        listView.setAdapter(adapter);                                                 //listView绑定适配器
+        adapter = new MusicAdapter(getActivity(), musicList);     //创建MusicAdapter的对象，实现自定义适配器的创建
+        listView.setAdapter(adapter);                             //listView绑定适配器
         return view;
     }
 

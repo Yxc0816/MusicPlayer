@@ -9,12 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.musicplayer.adapter.*;
-import com.example.user.musicplayer.fragment.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

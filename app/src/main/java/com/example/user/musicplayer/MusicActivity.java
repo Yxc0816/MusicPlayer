@@ -69,8 +69,8 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         mediaPlayer = new MediaPlayer();
         prevAndnextplaying(list.musicList.get(position).path);
 
-        //
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {       //seekbar设置监听，实现指哪放到哪
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {   //seekbar设置监听，实现指哪放到哪
             //如果点击进度条
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -106,7 +106,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         if (list.musicList.get(position).albumBip != null) {
             bgImgv.setImageBitmap(list.musicList.get(position).albumBip);
         } else {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.touxiang1);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.touxiang8);
             bgImgv.setImageBitmap(bitmap);
         }
         try {
