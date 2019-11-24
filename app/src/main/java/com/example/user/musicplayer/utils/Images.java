@@ -10,14 +10,8 @@ import android.graphics.PorterDuffXfermode;
  * Created by shaoyangyang on 2017/12/20.
  */
 
-public class MergeImage {
-        /**
-         * 合成碟片图片
-         *
-         * @param discBitmap  黑胶碟片底图
-         * @param albumBitmap 专辑封面图
-         * @return
-         */
+public class Images {
+
         public static Bitmap mergeThumbnailBitmap(Bitmap discBitmap, Bitmap albumBitmap) {
 
             //获得黑胶碟片底图宽和高

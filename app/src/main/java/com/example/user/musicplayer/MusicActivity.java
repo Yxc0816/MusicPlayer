@@ -1,6 +1,5 @@
 package com.example.user.musicplayer;
 
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,14 +12,12 @@ import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.musicplayer.entity.Music;
-import com.example.user.musicplayer.utils.Common;
+import com.example.user.musicplayer.utils.list;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -70,7 +67,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = getIntent();           //通过getIntent()方法实现intent信息的获取
         position = intent.getIntExtra("position", 0);        //获取position
         mediaPlayer = new MediaPlayer();
-        prevAndnextplaying(Common.musicList.get(position).path);
+        prevAndnextplaying(list.musicList.get(position).path);
 
         //
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {       //seekbar设置监听，实现指哪放到哪
@@ -100,14 +97,14 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     private void prevAndnextplaying(String path) {
         isStop = false;
         mediaPlayer.reset(); //获取歌曲信息
-        titleTv.setText(Common.musicList.get(position).title);
-        artistTv.setText(Common.musicList.get(position).artist + "--" + Common.musicList.get(position).album);
+        titleTv.setText(list.musicList.get(position).title);
+        artistTv.setText(list.musicList.get(position).artist + "--" + list.musicList.get(position).album);
 
         //暂停键图片资源
         pauseImgv.setImageResource(R.mipmap.ic_play_btn_pause);
         //如果专辑不为空
-        if (Common.musicList.get(position).albumBip != null) {
-            bgImgv.setImageBitmap(Common.musicList.get(position).albumBip);
+        if (list.musicList.get(position).albumBip != null) {
+            bgImgv.setImageBitmap(list.musicList.get(position).albumBip);
         } else {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.touxiang1);
             bgImgv.setImageBitmap(bitmap);
@@ -132,10 +129,10 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-        totalTv.setText(formatTime(Common.musicList.get(position).length));
+        totalTv.setText(formatTime(list.musicList.get(position).length));
 
         //进度条最长播放时间
-        seekBar.setMax(Common.musicList.get(position).length);
+        seekBar.setMax(list.musicList.get(position).length);
 
         //进入时播放
         MusicThread musicThread = new MusicThread();                                         //启动线程
@@ -146,27 +143,27 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     private void setPlayMode() {
         if (playMode == 0)//全部循环
         {
-            if (position == Common.musicList.size() - 1)//默认循环播放
+            if (position == list.musicList.size() - 1)//默认循环播放
             {
                 position = 0;// 第一首
                 mediaPlayer.reset();
-                prevAndnextplaying(Common.musicList.get(position).path);
+                prevAndnextplaying(list.musicList.get(position).path);
 
             } else {
                 position++;
                 mediaPlayer.reset();
-                prevAndnextplaying(Common.musicList.get(position).path);
+                prevAndnextplaying(list.musicList.get(position).path);
             }
         } else if (playMode == 1)//单曲循环
         {
             //position不需要更改
             mediaPlayer.reset();
-            prevAndnextplaying(Common.musicList.get(position).path);
+            prevAndnextplaying(list.musicList.get(position).path);
         } else if (playMode == 2)//随机
         {
-            position = (int) (Math.random() * Common.musicList.size());//随机播放
+            position = (int) (Math.random() * list.musicList.size());//随机播放
             mediaPlayer.reset();
-            prevAndnextplaying(Common.musicList.get(position).path);
+            prevAndnextplaying(list.musicList.get(position).path);
         }
     }
 
@@ -174,49 +171,49 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     private void setBtnMode() {
         if (playMode == 0)//全部循环
         {
-            if (position == Common.musicList.size() - 1)//默认循环播放
+            if (position == list.musicList.size() - 1)//默认循环播放
             {
                 if (buttonWitch == 1) {
                     position--;
                     mediaPlayer.reset();
-                    prevAndnextplaying(Common.musicList.get(position).path);
+                    prevAndnextplaying(list.musicList.get(position).path);
                 } else if (buttonWitch == 2) {
                     position = 0;// 第一首
                     mediaPlayer.reset();
-                    prevAndnextplaying(Common.musicList.get(position).path);
+                    prevAndnextplaying(list.musicList.get(position).path);
                 }
             } else if (position == 0) {
                 if (buttonWitch == 1) {
-                    position = Common.musicList.size() - 1;
+                    position = list.musicList.size() - 1;
                     mediaPlayer.reset();
-                    prevAndnextplaying(Common.musicList.get(position).path);
+                    prevAndnextplaying(list.musicList.get(position).path);
                 } else if (buttonWitch == 2) {
                     position++;
                     mediaPlayer.reset();
-                    prevAndnextplaying(Common.musicList.get(position).path);
+                    prevAndnextplaying(list.musicList.get(position).path);
                 }
             }else {
                 if(buttonWitch ==1){
                     position--;
                     mediaPlayer.reset();
-                    prevAndnextplaying(Common.musicList.get(position).path);
+                    prevAndnextplaying(list.musicList.get(position).path);
 
                 }else if(buttonWitch ==2){
                     position++;
                     mediaPlayer.reset();
-                    prevAndnextplaying(Common.musicList.get(position).path);
+                    prevAndnextplaying(list.musicList.get(position).path);
                 }
             }
         } else if (playMode == 1)//单曲循环
         {
             //position不需要更改
             mediaPlayer.reset();
-            prevAndnextplaying(Common.musicList.get(position).path);
+            prevAndnextplaying(list.musicList.get(position).path);
         } else if (playMode == 2)//随机
         {
-            position = (int) (Math.random() * Common.musicList.size());//随机播放
+            position = (int) (Math.random() * list.musicList.size());//随机播放
             mediaPlayer.reset();
-            prevAndnextplaying(Common.musicList.get(position).path);
+            prevAndnextplaying(list.musicList.get(position).path);
         }
     }
 
@@ -305,11 +302,11 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onPause() {
         super.onPause();
-        for (Music music : Common.musicList
+        for (Music music : list.musicList
                 ) {
             music.isPlaying = false;
         }
-        Common.musicList.get(position).isPlaying = true;
+        list.musicList.get(position).isPlaying = true;
     }
 
     @Override
@@ -338,7 +335,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public void run() {
-            while (!isStop && Common.musicList.get(position) != null) {
+            while (!isStop && list.musicList.get(position) != null) {
                 try {
                     //让线程睡眠1000毫秒
                     Thread.sleep(2000);

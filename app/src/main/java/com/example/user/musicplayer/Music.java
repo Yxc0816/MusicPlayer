@@ -1,4 +1,4 @@
-package com.example.user.musicplayer.entity;
+package com.example.user.musicplayer;
 
 import android.graphics.Bitmap;
 

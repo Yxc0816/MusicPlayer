@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/touxiang1" />
+        android:src="@mipmap/touxiang8" />
 
     <RelativeLayout
         android:id="@+id/music_relativelayout"
@@ -149,11 +149,12 @@
 
                 <ImageView
                     android:id="@+id/music_prev_imgv"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/music_play_btn_loop_img"
-                    android:src="@drawable/seach_btn_pre" />
+                    android:src="@drawable/previousicon" />
 
                 <ImageView
                     android:id="@+id/music_pause_imgv"
@@ -161,16 +162,16 @@
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/seach_btn_pause" />
+                    android:src="@drawable/playicon" />
 
                 <ImageView
                     android:id="@+id/music_next_imgv"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="18dp"
                     android:layout_toRightOf="@id/music_pause_imgv"
-                    android:src="@drawable/seach_btn_next" />
+                    android:src="@drawable/forwardicon" />
 
             </RelativeLayout>
 

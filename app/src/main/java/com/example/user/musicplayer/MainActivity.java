@@ -16,17 +16,15 @@ import android.widget.Toast;
 import com.example.user.musicplayer.adapter.*;
 import com.example.user.musicplayer.fragment.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 //实现OnClickListener的接口
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView logicTv;
-    private TextView onlineTv;
     private ViewPager viewPager;
-    private ImageView menuImagv;
-    private ImageView seachImagv;
+
+
     //将Fragment放入List集合中，存放fragment对象
     private List<Fragment> fragmentList = new ArrayList<>();
 
@@ -40,9 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //设置监听
         listen();
         //创建fragment对象
-        LogicFragment logicFragment = new LogicFragment();
+        LocalFragment localFragment = new LocalFragment();
         //将fragment对象添加到fragmentList中
-        fragmentList.add(logicFragment);
+        fragmentList.add(localFragment);
         //通过MusicPagerAdapter类创建musicPagerAdapter的适配器，下面我将添加MusicPagerAdapter类的创建方法
         MusicPagerAdapter musicPagerAdapter = new MusicPagerAdapter(getSupportFragmentManager(), fragmentList);
         //viewPager绑定适配器
@@ -109,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
             final View view = LayoutInflater.from(this).inflate(R.layout.dialog1_layout, null);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("退出提示");
+            builder.setTitle("提示");
             builder.setView(view);
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override

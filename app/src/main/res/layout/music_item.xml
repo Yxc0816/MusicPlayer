@@ -37,14 +37,7 @@
         android:layout_gravity="bottom"
         android:text="赵雷"/>
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginRight="10dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:src="@mipmap/ic_music_list_icon_more" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1sp"

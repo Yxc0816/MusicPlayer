@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicplayer.R;
-import com.example.user.musicplayer.entity.Music;
-import com.example.user.musicplayer.utils.Common;
+import com.example.user.musicplayer.Music;
+import com.example.user.musicplayer.utils.list;
 import java.util.List;
 
 
@@ -30,7 +30,7 @@ public class MusicAdapter extends BaseAdapter {
     //这里需要返回musicList.size()
     @Override
     public int getCount() {
-        return Common.musicList.size();
+        return list.musicList.size();
     }
 
     @Override
@@ -66,10 +66,10 @@ public class MusicAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         //赋值 准确的是绑定赋值的中介
-        viewHolder.titleTv.setText(Common.musicList.get(position).title);
-        viewHolder.artistTv.setText(Common.musicList.get(position).artist + "-" + Common.musicList.get(position).album);
-        viewHolder.albumImgv.setImageBitmap(Common.musicList.get(position).albumBip);
-        if (Common.musicList.get(position).isPlaying) {
+        viewHolder.titleTv.setText(list.musicList.get(position).title);
+        viewHolder.artistTv.setText(list.musicList.get(position).artist + "-" + list.musicList.get(position).album);
+        viewHolder.albumImgv.setImageBitmap(list.musicList.get(position).albumBip);
+        if (list.musicList.get(position).isPlaying) {
             viewHolder.isPlayingView.setVisibility(View.VISIBLE);
         } else {
             viewHolder.isPlayingView.setVisibility(View.INVISIBLE);

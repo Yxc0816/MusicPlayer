@@ -2,11 +2,8 @@ package com.example.user.musicplayer.fragment;
 
 
 import android.Manifest;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -25,18 +22,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RemoteViews;
 
 import com.example.user.musicplayer.MusicActivity;
 import com.example.user.musicplayer.R;
 import com.example.user.musicplayer.adapter.*;
-import com.example.user.musicplayer.entity.Music;
-import com.example.user.musicplayer.utils.Common;
+import com.example.user.musicplayer.Music;
+import com.example.user.musicplayer.utils.list;
 import com.master.permissionhelper.PermissionHelper;
 
 import java.util.List;
 
-public class LogicFragment extends Fragment {
+public class LocalFragment extends Fragment {
 
     private String TAG = "HelloActivity";
     private PermissionHelper permissionHelper;  //权限控制
@@ -45,7 +41,7 @@ public class LogicFragment extends Fragment {
     private List<ListView> listViewList;
     private MusicAdapter adapter;
 
-    public LogicFragment() {
+    public LocalFragment() {
         // Required empty public constructor
     }
 
@@ -89,11 +85,11 @@ public class LogicFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for (Music m : Common.musicList
-                        ) {
+                for (Music m : list.musicList
+                ) {
                     m.isPlaying = false;
                 }
-                Common.musicList.get(position).isPlaying = true;
+                list.musicList.get(position).isPlaying = true;
                 //更新界面
                 adapter.notifyDataSetChanged();
                 //intent实现页面的跳转，getActivity()获取当前的activity， MusicActivity.class将要调转的activity
@@ -101,30 +97,7 @@ public class LogicFragment extends Fragment {
                 //使用putExtra（）传值
                 intent.putExtra("position", position);     //播放的歌曲在列表中的位置用整数表示
                 startActivity(intent);
-
                 PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                //后台通知栏
-                RemoteViews remoteViews = new RemoteViews(getActivity().getPackageName(), R.layout.notification_layout);
-                remoteViews.setTextViewText(R.id.nf_title_tv, Common.musicList.get(position).title);
-                remoteViews.setTextViewText(R.id.nf_artist_tv, Common.musicList.get(position).artist);
-                if (Common.musicList.get(position).albumBip != null) {
-                    remoteViews.setImageViewBitmap(R.id.nf_album_imgv, Common.musicList.get(position).albumBip);
-                }
-
-                //通知
-                Notification.Builder builder = new Notification.Builder(getActivity());
-                builder.setContent(remoteViews);
-                builder.setSmallIcon(R.mipmap.ic_launcher);
-                builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-                builder.setContentTitle("我的通知");
-                builder.setContentText("正在播放音乐");
-                builder.setContentIntent(pendingIntent);
-                builder.setAutoCancel(true);
-
-                NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(1, builder.build());
-
             }
         });
 
@@ -145,7 +118,7 @@ public class LogicFragment extends Fragment {
 
     //nitListView()实现对手机中MediaDataBase的扫描
     private void initListView() {
-        Common.musicList.clear();
+        list.musicList.clear();
         //获取ContentResolver的对象，并进行实例化
         ContentResolver resolver = getActivity().getContentResolver();
         //获取游标
@@ -169,7 +142,7 @@ public class LogicFragment extends Fragment {
                 music.path = path;
                 music.albumBip = getAlbumArt(albumID);
                 //将music放入musicList集合中
-                Common.musicList.add(music);
+                list.musicList.add(music);
             }
             while (cursor.moveToNext());
         }

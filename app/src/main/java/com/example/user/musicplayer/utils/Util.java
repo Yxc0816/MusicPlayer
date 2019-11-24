@@ -7,16 +7,9 @@ import android.media.ThumbnailUtils;
  * Created by shaoyangyang on 2017/12/20.
  */
 
-public class BlurUtil {
-    private static final String TAG = BlurUtil.class.getSimpleName();
+public class Util {
+    private static final String TAG = Util.class.getSimpleName();
 
-    /**
-     * 对图片进行毛玻璃化
-     * @param sentBitmap 位图
-     * @param radius 虚化程度
-     * @param canReuseInBitmap 是否重用
-     * @return 位图
-     */
     public static Bitmap doBlur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
 
         Bitmap bitmap;
