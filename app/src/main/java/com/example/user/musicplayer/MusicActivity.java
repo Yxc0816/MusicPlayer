@@ -106,7 +106,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         if (list.musicList.get(position).albumBip != null) {
             bgImgv.setImageBitmap(list.musicList.get(position).albumBip);
         } else {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.touxiang8);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.blue);
             bgImgv.setImageBitmap(bitmap);
         }
         try {
@@ -130,12 +130,11 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
 
 
         totalTv.setText(formatTime(list.musicList.get(position).length));
-
         //进度条最长播放时间
         seekBar.setMax(list.musicList.get(position).length);
 
         //进入时播放
-        MusicThread musicThread = new MusicThread();                                         //启动线程
+        MusicThread musicThread = new MusicThread();              //启动线程
         new Thread(musicThread).start();
     }
 

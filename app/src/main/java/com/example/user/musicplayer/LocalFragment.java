@@ -130,7 +130,6 @@ public class LocalFragment extends Fragment {
                 String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));            //获取歌名
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));         //获取歌唱者
                 String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));           //获取专辑名
-                int albumID = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));            //获取专辑图片id
                 int length = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
                 String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                 //创建Music对象，并赋值
@@ -140,7 +139,6 @@ public class LocalFragment extends Fragment {
                 music.artist = artist;
                 music.album = album;
                 music.path = path;
-                music.albumBip = getAlbumArt(albumID);
                 //将music放入musicList集合中
                 list.musicList.add(music);
             }
@@ -149,12 +147,11 @@ public class LocalFragment extends Fragment {
         cursor.close();                                                                         //关闭游标
     }
 
-    //获取专辑图片的方法
-    private Bitmap getAlbumArt(int album_id) {                              //前面我们只是获取了专辑图片id，在这里实现通过id获取掉专辑图片
+
+    private Bitmap getAlbumArt(int album_id) {
         String mUriAlbums = "content://media/external/audio/albums";
         String[] projection = new String[]{"album_art"};
 
-        //通过内容解析从数据中按照专辑id查找图片
         Cursor cur = getActivity().getContentResolver().query(Uri.parse(mUriAlbums + "/" + Integer.toString(album_id)), projection, null, null, null);
         String album_art = null;
         if (cur.getCount() > 0 && cur.getColumnCount() > 0) {
@@ -164,9 +161,9 @@ public class LocalFragment extends Fragment {
         cur.close();
         Bitmap bm = null;
         if (album_art != null) {
-            bm = BitmapFactory.decodeFile(album_art);
+            bm = BitmapFactory.decodeResource(getResources(), R.mipmap.blue);
         } else {
-            bm = BitmapFactory.decodeResource(getResources(), R.mipmap.touxiang1);
+            bm = BitmapFactory.decodeResource(getResources(), R.mipmap.blue);
         }
         return bm;
     }

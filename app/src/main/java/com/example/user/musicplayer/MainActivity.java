@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //
         //绑定id
         bindID();
         //设置监听
@@ -75,13 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void listen() {
         logicTv.setOnClickListener(this);
-       // menuImagv.setOnClickListener(this);
     }
 
     private void bindID() {
         logicTv = findViewById(R.id.main_logic_tv);
         viewPager = findViewById(R.id.main_vp);
-       // menuImagv = findViewById(R.id.main_menu_imgv);
 
 
     }
@@ -93,8 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //实现点击TextView切换fragment
                 viewPager.setCurrentItem(0);
                 break;
-           // case R.id.main_menu_imgv:
-               // break;
             default:
                 break;
         }

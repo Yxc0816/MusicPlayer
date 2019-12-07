@@ -57,7 +57,6 @@ public class MusicAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.titleTv = view.findViewById(R.id.musicitem_title_tv);
             viewHolder.artistTv = view.findViewById(R.id.musicitem_artist_tv);
-            viewHolder.albumImgv = view.findViewById(R.id.musicitem_album_imgv);
             viewHolder.isPlayingView = view.findViewById(R.id.musicitem_playing_v);
             view.setTag(viewHolder);
 
@@ -68,7 +67,6 @@ public class MusicAdapter extends BaseAdapter {
         //赋值 准确的是绑定赋值的中介
         viewHolder.titleTv.setText(list.musicList.get(position).title);
         viewHolder.artistTv.setText(list.musicList.get(position).artist + "-" + list.musicList.get(position).album);
-        viewHolder.albumImgv.setImageBitmap(list.musicList.get(position).albumBip);
         if (list.musicList.get(position).isPlaying) {
             viewHolder.isPlayingView.setVisibility(View.VISIBLE);
         } else {
@@ -82,7 +80,6 @@ public class MusicAdapter extends BaseAdapter {
     class ViewHolder {
         TextView titleTv;
         TextView artistTv;
-        ImageView albumImgv;
         View isPlayingView;
     }
 }
